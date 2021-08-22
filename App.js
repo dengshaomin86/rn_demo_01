@@ -33,7 +33,7 @@ function App() {
           <Stack.Screen name="Details" component={DetailsScreen} />
         </Stack.Group>
         <Stack.Group screenOptions={{presentation: 'modal', headerStyle: {backgroundColor: 'papayawhip'}}}>
-          <Stack.Screen name="Login" component={Login} options={{title: 'login-a'}} />
+          <Stack.Screen name="Login" component={Login} options={{title: 'login-a', header: () => null}} />
         </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>

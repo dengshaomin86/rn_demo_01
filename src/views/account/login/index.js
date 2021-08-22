@@ -3,8 +3,9 @@ import {View, Text, Button} from 'react-native';
 
 class Login extends Component {
   static navigationOptions = {
-    header: null,
+    title: '123',
   };
+
   render() {
     const {navigation} = this.props;
 
