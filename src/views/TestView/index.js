@@ -4,7 +4,7 @@ import {inject, observer} from 'mobx-react';
 
 @inject('RootStore')
 @observer
-class Home extends Component {
+class TestView extends Component {
   changeRootName = () => {
     this.props.RootStore.changeName(`hello ${Date.now()}`);
   };
@@ -14,7 +14,7 @@ class Home extends Component {
 
     return (
       <View>
-        <Text>home</Text>
+        <Text>TestView</Text>
         <Text onPress={this.changeRootName} style={{width: 100, height: 100, backgroundColor: 'yellow'}}>
           {name}
         </Text>
@@ -23,4 +23,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default TestView;
