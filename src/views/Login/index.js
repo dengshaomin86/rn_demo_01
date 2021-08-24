@@ -7,6 +7,7 @@ import {validatePhoneNumber} from '../../utils/validator';
 import request from '../../utils/request';
 import {ACCOUNT_LOGIN} from '../../utils/pathMap';
 import Toast from '../../utils/toast';
+import DButton from '../../components/DButton';
 
 class Login extends Component {
   static navigationOptions = {
@@ -38,6 +39,10 @@ class Login extends Component {
     console.log(res);
   };
 
+  handleGetVCode = () => {
+    console.log('handleGetVCode');
+  };
+
   render() {
     const {navigation} = this.props;
     const {phoneNumber, validate} = this.state;
@@ -64,8 +69,12 @@ class Login extends Component {
             />
           </View>
         </View>
-        <Text>Login</Text>
-        <Button title="go to home" onPress={() => navigation.navigate('Home')}></Button>
+        {/* <Button title="go to home" onPress={() => navigation.navigate('Home')}></Button> */}
+        <View>
+          <DButton onPress={this.handleGetVCode} style={{width: '90%', height: px2dp(50), alignSelf: 'center', borderRadius: 50, overflow: 'hidden'}}>
+            LOGIN
+          </DButton>
+        </View>
       </View>
     );
   }
