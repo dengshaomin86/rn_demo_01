@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import {View, Text, Button, Image, StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Input} from 'react-native-elements';
-import {px2dp} from '../../utils/stylesKits';
-import {validatePhoneNumber} from '../../utils/validator';
-import request from '../../utils/request';
-import {ACCOUNT_LOGIN} from '../../utils/pathMap';
-import Toast from '../../utils/toast';
-import DButton from '../../components/DButton';
-import CodeField from '../../components/CodeField';
+import {px2dp} from '../utils/stylesKits';
+import {validatePhoneNumber} from '../utils/validator';
+import request from '../utils/request';
+import {ACCOUNT_LOGIN} from '../utils/pathMap';
+import Toast from '../utils/toast';
+import DButton from '../components/DButton';
+import CodeField from '../components/CodeField';
 
 class Login extends Component {
   static navigationOptions = {
@@ -125,7 +125,7 @@ class Login extends Component {
     return (
       <View>
         <StatusBar backgroundColor="transparent" translucent={true}></StatusBar>
-        <Image style={{width: '100%', height: px2dp(200)}} source={require('../../assets/images/1.jpg')}></Image>
+        <Image style={{width: '100%', height: px2dp(200)}} source={require('../assets/images/1.jpg')}></Image>
         <View style={{padding: px2dp(20)}}>{showLogin ? this.renderLogin() : this.renderVCode()}</View>
         {/* <Button title="go to home" onPress={() => navigation.navigate('Home')}></Button> */}
       </View>
