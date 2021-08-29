@@ -8,9 +8,9 @@ class Index extends Component {
     textStyle: {},
   };
   render() {
-    const {style, textStyle, children, onPress} = this.props;
+    const {style, textStyle, children, onPress, disabled} = this.props;
     return (
-      <TouchableOpacity onPress={onPress} activeOpacity={0.7} style={{width: '100%', height: '100%', ...style}}>
+      <TouchableOpacity disabled={disabled} onPress={onPress} activeOpacity={0.7} style={{width: '100%', height: '100%', ...style}}>
         <LinearGradient start={{x: 0, y: 0}} start={{x: 1, y: 0}} colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}>
           <Text style={{...styles.buttonText, ...textStyle}}>{children}</Text>
         </LinearGradient>

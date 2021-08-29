@@ -3,6 +3,7 @@ import {BASE_URL} from './pathMap';
 
 const instance = axios.create({
   baseURL: BASE_URL,
+  timeout: 1000,
 });
 
 // 添加请求拦截器
