@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
-import {Text, StyleSheet, TouchableOpacity} from 'react-native';
+import React, { Component } from 'react';
+import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { px2dp } from '../utils/stylesKits';
 
 class Index extends Component {
   static defaultProps = {
@@ -8,11 +9,11 @@ class Index extends Component {
     textStyle: {},
   };
   render() {
-    const {style, textStyle, children, onPress, disabled} = this.props;
+    const { style, textStyle, children, onPress, disabled } = this.props;
     return (
-      <TouchableOpacity disabled={disabled} onPress={onPress} activeOpacity={0.7} style={{width: '100%', height: '100%', ...style}}>
-        <LinearGradient start={{x: 0, y: 0}} start={{x: 1, y: 0}} colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}>
-          <Text style={{...styles.buttonText, ...textStyle}}>{children}</Text>
+      <TouchableOpacity disabled={disabled} onPress={onPress} activeOpacity={0.7} style={{ width: '100%', height: '100%', ...style }}>
+        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#FF5B9D', '#FF8283', '#FEAC69']} style={styles.linearGradient}>
+          <Text style={{ ...styles.buttonText, ...textStyle }}>{children}</Text>
         </LinearGradient>
       </TouchableOpacity>
     );
@@ -22,9 +23,7 @@ class Index extends Component {
 const styles = StyleSheet.create({
   linearGradient: {
     flex: 1,
-    paddingLeft: 15,
-    paddingRight: 15,
-    borderRadius: 5,
+    borderRadius: px2dp(5),
     justifyContent: 'center',
   },
   buttonText: {

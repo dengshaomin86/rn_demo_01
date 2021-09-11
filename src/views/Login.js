@@ -1,155 +1,96 @@
 import React, { Component } from 'react';
-import { View, Text, Button, Image, StatusBar, ScrollView, ImageBackground, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { Input } from 'react-native-elements';
+import { View, Text, StatusBar, ScrollView, StyleSheet } from 'react-native';
 import { px2dp } from '../utils/stylesKits';
-import { validatePhoneNumber } from '../utils/validator';
-import request from '../utils/request';
-import { ACCOUNT_LOGIN } from '../utils/pathMap';
-import Toast from '../utils/toast';
+import { screenWidth } from '../utils/stylesKits';
+import DInput from '../components/DInput';
 import DButton from '../components/DButton';
-import CodeField from '../components/CodeField';
-import { screenWidth, screenHeight } from '../utils/stylesKits';
 
 class Login extends Component {
   state = {
-    phoneNumber: '13006190216',
-    validate: true,
-    showLogin: true,
-    count: '',
+    username: '',
+    password: '',
   };
 
-  changeText = phoneNumber => {
-    this.setState({ phoneNumber });
-    Toast.showLoading();
+  changeUsername = username => {
+    this.setState({ username });
   };
 
-  // 获取验证码
-  handleGetVCode = async () => {
-    console.log('handleGetVCode');
-    const { phoneNumber } = this.state;
-    const validate = validatePhoneNumber(phoneNumber);
-    this.setState({ validate });
-    if (!validate) return;
-    // const res = await request.post(ACCOUNT_LOGIN, {
-    //   phone: phoneNumber,
-    // });
-    // console.log(res);
-    this.setState({ showLogin: false });
-    this.countDown();
+  changePassword = password => {
+    this.setState({ password });
   };
 
-  // 定时器
-  countDown = () => {
-    let sec = 10;
-    let timeId = setInterval(() => {
-      sec--;
-      this.setState({ count: sec });
-      if (sec === 0) {
-        clearInterval(timeId);
-      }
-    }, 1000);
-  };
-
-  // 提交
   submit = async () => {
-    console.log('submit');
     this.props.navigation.navigate('Home');
   };
 
-  // 渲染登录
-  renderLogin = () => {
-    const { phoneNumber, validate } = this.state;
-
-    return (
-      <View style={styles.wrap}>
-        <View style={styles.form}>
-          <Text style={styles.title}>手机号登录注册</Text>
-          <Input
-            placeholder="请输入手机号"
-            leftIcon={<Icon name="phone" size={px2dp(20)} color="#ccc" />}
-            maxLength={11}
-            keyboardType="phone-pad"
-            value={phoneNumber}
-            inputStyle={styles.input}
-            errorMessage={validate ? '' : '手机号码格式不正确'}
-            onChangeText={this.changeText}
-            onSubmitEditing={this.handleGetVCode}
-          />
-        </View>
-        <View>
-          <DButton onPress={this.handleGetVCode} style={styles.button}>
-            获取验证码
-          </DButton>
-        </View>
-      </View>
-    );
-  };
-
-  // 渲染验证码
-  renderVCode = () => {
-    const { phoneNumber, count } = this.state;
-
-    return (
-      <View style={styles.wrap}>
-        <View style={styles.form}>
-          <Text style={styles.title}>输入6位验证码</Text>
-          <Text>已发到：+86 {phoneNumber}</Text>
-          <CodeField onSubmitEditing={this.submit} />
-        </View>
-        <View>
-          <DButton onPress={this.handleGetVCode} disabled={!!count} style={styles.button}>
-            重新获取{count ? `(${count})` : ''}
-          </DButton>
-        </View>
-      </View>
-    );
-  };
-
   render() {
-    const { showLogin } = this.state;
+    const { username, password } = this.state;
 
     return (
-      <View style={{ flex: 1 }}>
-        <StatusBar backgroundColor="transparent" translucent={true}></StatusBar>
-        <ImageBackground source={require('../assets/images/login-bg.jpg')} style={styles.bgImg}>
-          <ScrollView>
-            <View>{showLogin ? this.renderLogin() : this.renderVCode()}</View>
-          </ScrollView>
-        </ImageBackground>
+      <View style={styles.container}>
+        <StatusBar backgroundColor="transparent" translucent={true} hidden={false} animated={true}></StatusBar>
+        <ScrollView>
+          <View style={styles.wrap}>
+            <View style={styles.form}>
+              <View style={styles.titleWrap}>
+                <Text style={styles.title}>登录</Text>
+              </View>
+              <DInput style={styles.input} value={username} onChangeText={this.changeUsername} icon="user" placeholder="用户名"></DInput>
+              <DInput
+                style={styles.input}
+                value={password}
+                onChangeText={this.changePassword}
+                icon="password"
+                placeholder="密码"
+                secureTextEntry={true}></DInput>
+            </View>
+            <View>
+              <DButton onPress={this.submit} style={styles.button}>
+                LOGIN
+              </DButton>
+            </View>
+          </View>
+        </ScrollView>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  bgImg: {
+  container: {
     flex: 1,
-    resizeMode: 'cover',
+    backgroundColor: '#2B2C31',
   },
   wrap: {
     margin: px2dp(20),
-    marginTop: px2dp(200),
+    marginTop: px2dp(120),
   },
   form: {
-    backgroundColor: 'rgba(255,255,255,0.4)',
     padding: px2dp(20),
-    marginBottom: px2dp(30),
+    marginBottom: px2dp(20),
     borderRadius: px2dp(6),
   },
+  titleWrap: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: px2dp(60),
+  },
+  titleIcon: {
+    fontSize: px2dp(38),
+    color: '#fff',
+    marginRight: px2dp(8),
+  },
   title: {
-    fontSize: px2dp(20),
-    color: '#333',
+    color: '#fff',
+    fontSize: px2dp(40),
   },
   input: {
-    color: '#333',
-    borderColor: '#fff',
+    marginBottom: px2dp(20),
   },
   button: {
-    width: px2dp(screenWidth - 30),
+    width: px2dp(screenWidth - 60),
     height: px2dp(50),
     alignSelf: 'center',
-    borderRadius: 50,
     overflow: 'hidden',
   },
 });

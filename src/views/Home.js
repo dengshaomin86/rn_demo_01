@@ -1,68 +1,161 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StatusBar, StyleSheet } from 'react-native';
-import { ImageHeaderScrollView, TriggeringView } from 'react-native-image-header-scroll-view';
+import { StyleSheet, View, Text, TouchableOpacity, StatusBar, ImageBackground, ScrollView } from 'react-native';
 import { px2dp } from '../utils/stylesKits';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from '../components/Iconfont';
 
 class Index extends Component {
-  renderForeground = () => {
-    return (
-      <View style={styles.titleWrap}>
-        <Text style={styles.title}>《兰亭序》</Text>
-      </View>
-    );
+  state = {
+    list: [
+      {
+        icon: 'signUp',
+        title: '音乐',
+        colors: ['#FFA956', '#FF5D75'],
+      },
+      {
+        icon: 'signUp',
+        title: '视频',
+        colors: ['#9B5CFD', '#398FFE'],
+      },
+      {
+        icon: 'signUp',
+        title: '小说',
+        colors: ['#02DFB6', '#46E543'],
+      },
+      {
+        icon: 'signUp',
+        title: '热点',
+        colors: ['#FFDD00', '#FFA300'],
+      },
+      {
+        icon: 'signUp',
+        title: '管理',
+        navigate: 'Manage',
+        colors: ['#FFA956', '#FF5D75'],
+      },
+    ],
   };
 
-  renderMain = () => {
-    return (
-      <View style={styles.articalWrap}>
-        <TriggeringView>
-          <Text style={styles.artical}>
-            &emsp;&emsp;永和九年，岁在癸丑，暮春之初，会于会稽山阴之兰亭，修禊事也。群贤毕至，少长咸集。此地有崇山峻岭，茂林修竹，又有清流激湍，映带左右，引以为流觞曲水，列坐其次。虽无丝竹管弦之盛，一觞一咏，亦足以畅叙幽情。
-          </Text>
-          <Text style={styles.artical}>&emsp;&emsp;是日也，天朗气清，惠风和畅。仰观宇宙之大，俯察品类之盛，所以游目骋怀，足以极视听之娱，信可乐也。</Text>
-          <Text style={styles.artical}>
-            &emsp;&emsp;夫人之相与，俯仰一世。或取诸怀抱，悟言一室之内；或因寄所托，放浪形骸之外。虽趣舍万殊，静躁不同，当其欣于所遇，暂得于己，快然自足，不知老之将至；及其所之既倦，情随事迁，感慨系之矣。向之所欣，俯仰之间，已为陈迹，犹不能不以之兴怀，况修短随化，终期于尽！古人云：“死生亦大矣。”岂不痛哉！
-          </Text>
-          <Text style={styles.artical}>
-            &emsp;&emsp;每览昔人兴感之由，若合一契，未尝不临文嗟悼，不能喻之于怀。固知一死生为虚诞，齐彭殇为妄作。后之视今，亦犹今之视昔，悲夫！故列叙时人，录其所述，虽世殊事异，所以兴怀，其致一也。后之览者，亦将有感于斯文。
-          </Text>
-        </TriggeringView>
-      </View>
-    );
+  navTo = navigate => {
+    if (!navigate) return;
+    this.props.navigation.navigate(navigate);
   };
+
+  renderItem(item) {
+    const { icon, title, colors, navigate } = item;
+    return (
+      <TouchableOpacity key={title} style={styles.itemWrap} activeOpacity={0.7} onPress={this.navTo.bind(this, navigate)}>
+        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={colors} style={styles.itemLinear}>
+          <View style={styles.itemIconWrap}>
+            <Icon name={icon} style={styles.itemIcon} />
+          </View>
+          <Text style={styles.itemTitle}>{title}</Text>
+        </LinearGradient>
+      </TouchableOpacity>
+    );
+  }
 
   render() {
+    const { list } = this.state;
+    const image = require('../assets/images/home.jpg');
     return (
-      <ImageHeaderScrollView
-        maxHeight={200}
-        minHeight={50}
-        headerImage={require('../assets/images/user-bg.jpg')}
-        renderForeground={() => this.renderForeground()}>
-        <StatusBar backgroundColor="transparent" translucent={true}></StatusBar>
-        {this.renderMain()}
-      </ImageHeaderScrollView>
+      <View style={styles.container}>
+        <ImageBackground source={image} style={styles.bg}>
+          <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} colors={['transparent', '#2B2C31']} style={styles.linearGradient}></LinearGradient>
+        </ImageBackground>
+        <ScrollView>
+          <View style={styles.main}>
+            <Text style={styles.username}>Assistant</Text>
+            <View style={styles.dateWrap}>
+              <Text style={{ ...styles.date, marginLeft: px2dp(4) }}>2021-02-12</Text>
+              <Text style={styles.dateJoin}></Text>
+              <Text style={styles.date}>Sat</Text>
+            </View>
+            <View style={styles.listWrap}>{list.map(item => this.renderItem(item))}</View>
+          </View>
+        </ScrollView>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  titleWrap: {
+  container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#2B2C31',
+    position: 'relative',
   },
-  title: {
-    fontSize: px2dp(26),
+  bg: {
+    width: '100%',
+    height: px2dp(500),
+    justifyContent: 'flex-end',
+    position: 'absolute',
+  },
+  linearGradient: {
+    width: '100%',
+    height: px2dp(300),
+  },
+  main: {
+    marginTop: px2dp(300),
+    padding: px2dp(20),
+  },
+  username: {
+    color: '#fff',
+    fontSize: px2dp(40),
     fontWeight: 'bold',
   },
-  articalWrap: {
-    backgroundColor: 'skyblue',
-    padding: px2dp(15),
-    paddingBottom: px2dp(100),
+  dateWrap: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: px2dp(10),
   },
-  artical: {
-    fontSize: px2dp(22),
+  date: {
+    color: '#999',
+    fontSize: px2dp(14),
+  },
+  dateJoin: {
+    width: px2dp(6),
+    height: px2dp(6),
+    backgroundColor: '#999',
+    borderRadius: px2dp(6),
+    marginLeft: px2dp(10),
+    marginRight: px2dp(10),
+  },
+  listWrap: {
+    marginTop: px2dp(50),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+  },
+  itemWrap: {
+    width: '47%',
+    marginBottom: px2dp(20),
+  },
+  itemLinear: {
+    flex: 1,
+    width: '100%',
+    padding: px2dp(15),
+    borderRadius: px2dp(20),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  itemIconWrap: {
+    width: px2dp(50),
+    height: px2dp(50),
+    borderRadius: px2dp(50),
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: px2dp(10),
+  },
+  itemIcon: {
+    fontSize: px2dp(25),
+    color: 'rgba(255, 255, 255, 0.7)',
+  },
+  itemTitle: {
+    fontSize: px2dp(18),
+    fontWeight: 'bold',
+    color: 'rgba(255, 255, 255, 0.7)',
   },
 });
 

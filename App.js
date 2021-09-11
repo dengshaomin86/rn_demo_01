@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <Provider>
-        <View style={{ flex: 1, backgroundColor: '#ff0' }}>
+        <View style={{ flex: 1, backgroundColor: '#2B2C31' }}>
           <Nav></Nav>
         </View>
       </Provider>
