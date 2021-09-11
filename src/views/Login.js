@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
-import {View, Text, Button, Image, StatusBar, ScrollView, ImageBackground, StyleSheet} from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, Button, Image, StatusBar, ScrollView, ImageBackground, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Input} from 'react-native-elements';
-import {px2dp} from '../utils/stylesKits';
-import {validatePhoneNumber} from '../utils/validator';
+import { Input } from 'react-native-elements';
+import { px2dp } from '../utils/stylesKits';
+import { validatePhoneNumber } from '../utils/validator';
 import request from '../utils/request';
-import {ACCOUNT_LOGIN} from '../utils/pathMap';
+import { ACCOUNT_LOGIN } from '../utils/pathMap';
 import Toast from '../utils/toast';
 import DButton from '../components/DButton';
 import CodeField from '../components/CodeField';
-import {screenWidth, screenHeight} from '../utils/stylesKits';
+import { screenWidth, screenHeight } from '../utils/stylesKits';
 
 class Login extends Component {
   state = {
@@ -20,22 +20,22 @@ class Login extends Component {
   };
 
   changeText = phoneNumber => {
-    this.setState({phoneNumber});
+    this.setState({ phoneNumber });
     Toast.showLoading();
   };
 
   // 获取验证码
   handleGetVCode = async () => {
     console.log('handleGetVCode');
-    const {phoneNumber} = this.state;
+    const { phoneNumber } = this.state;
     const validate = validatePhoneNumber(phoneNumber);
-    this.setState({validate});
+    this.setState({ validate });
     if (!validate) return;
     // const res = await request.post(ACCOUNT_LOGIN, {
     //   phone: phoneNumber,
     // });
     // console.log(res);
-    this.setState({showLogin: false});
+    this.setState({ showLogin: false });
     this.countDown();
   };
 
@@ -44,7 +44,7 @@ class Login extends Component {
     let sec = 10;
     let timeId = setInterval(() => {
       sec--;
-      this.setState({count: sec});
+      this.setState({ count: sec });
       if (sec === 0) {
         clearInterval(timeId);
       }
@@ -59,7 +59,7 @@ class Login extends Component {
 
   // 渲染登录
   renderLogin = () => {
-    const {phoneNumber, validate} = this.state;
+    const { phoneNumber, validate } = this.state;
 
     return (
       <View style={styles.wrap}>
@@ -88,7 +88,7 @@ class Login extends Component {
 
   // 渲染验证码
   renderVCode = () => {
-    const {phoneNumber, count} = this.state;
+    const { phoneNumber, count } = this.state;
 
     return (
       <View style={styles.wrap}>
@@ -107,10 +107,10 @@ class Login extends Component {
   };
 
   render() {
-    const {showLogin} = this.state;
+    const { showLogin } = this.state;
 
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <StatusBar backgroundColor="transparent" translucent={true}></StatusBar>
         <ImageBackground source={require('../assets/images/login-bg.jpg')} style={styles.bgImg}>
           <ScrollView>

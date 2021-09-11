@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, StatusBar, StyleSheet} from 'react-native';
-import {ImageHeaderScrollView, TriggeringView} from 'react-native-image-header-scroll-view';
-import {px2dp} from '../utils/stylesKits';
+import React, { Component } from 'react';
+import { View, Text, TouchableOpacity, StatusBar, StyleSheet } from 'react-native';
+import { ImageHeaderScrollView, TriggeringView } from 'react-native-image-header-scroll-view';
+import { px2dp } from '../utils/stylesKits';
 
 class Index extends Component {
   renderForeground = () => {

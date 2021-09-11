@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator();
 function Nav() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="Demo">
         <Stack.Group>
           <Stack.Screen name="Demo" component={Demo} />
         </Stack.Group>
