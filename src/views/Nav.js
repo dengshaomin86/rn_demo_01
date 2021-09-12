@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Demo from './Demo';
@@ -22,7 +22,8 @@ function Nav() {
   };
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login" screenOptions={options}>
+      <StatusBar backgroundColor="transparent" translucent={true} hidden={false} animated={true}></StatusBar>
+      <Stack.Navigator initialRouteName="Home" screenOptions={options}>
         <Stack.Group>
           <Stack.Screen name="Demo" component={Demo} />
         </Stack.Group>

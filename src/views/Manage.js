@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, StatusBar, ImageBackground, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { px2dp } from '../utils/stylesKits';
 import { dark } from '../utils/color';
 
@@ -30,7 +30,9 @@ class Index extends Component {
     const { list } = this.state;
     return (
       <View style={styles.container}>
-        <View style={styles.listWrap}>{list.map(item => this.renderItem(item))}</View>
+        <ScrollView>
+          <View style={styles.listWrap}>{list.map(item => this.renderItem(item))}</View>
+        </ScrollView>
       </View>
     );
   }

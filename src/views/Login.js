@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, StatusBar, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { px2dp } from '../utils/stylesKits';
-import { screenWidth } from '../utils/stylesKits';
 import { dark } from '../utils/color';
 import DInput from '../components/DInput';
 import DButton from '../components/DButton';
@@ -29,7 +28,6 @@ class Login extends Component {
 
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor="transparent" translucent={true} hidden={false} animated={true}></StatusBar>
         <ScrollView>
           <View style={styles.wrap}>
             <View style={styles.form}>
@@ -44,8 +42,6 @@ class Login extends Component {
                 icon="password"
                 placeholder="密码"
                 secureTextEntry={true}></DInput>
-            </View>
-            <View>
               <DButton onPress={this.submit} style={styles.button}>
                 LOGIN
               </DButton>
@@ -80,7 +76,7 @@ const styles = StyleSheet.create({
     fontSize: px2dp(40),
   },
   input: {
-    marginBottom: px2dp(20),
+    marginBottom: px2dp(30),
     borderColor: dark.panel,
     borderWidth: px2dp(1),
     borderBottomColor: dark.panel,
@@ -89,9 +85,7 @@ const styles = StyleSheet.create({
     paddingRight: px2dp(15),
   },
   button: {
-    width: px2dp(screenWidth - 60),
     height: px2dp(50),
-    alignSelf: 'center',
     overflow: 'hidden',
     borderRadius: px2dp(50),
   },

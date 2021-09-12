@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, StatusBar, ImageBackground, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ImageBackground, ScrollView } from 'react-native';
 import { px2dp } from '../utils/stylesKits';
+import { dark } from '../utils/color';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from '../components/Iconfont';
 
@@ -31,7 +32,7 @@ class Index extends Component {
         icon: 'signUp',
         title: '管理',
         navigate: 'Manage',
-        colors: ['#FFA956', '#FF5D75'],
+        colors: ['#4ecdc4', '#556270'],
       },
     ],
   };
@@ -61,7 +62,11 @@ class Index extends Component {
     return (
       <View style={styles.container}>
         <ImageBackground source={image} style={styles.bg}>
-          <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} colors={['transparent', '#2B2C31']} style={styles.linearGradient}></LinearGradient>
+          <LinearGradient
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            colors={[dark.transparent, dark.background]}
+            style={styles.linearGradient}></LinearGradient>
         </ImageBackground>
         <ScrollView>
           <View style={styles.main}>
@@ -82,7 +87,7 @@ class Index extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2B2C31',
+    backgroundColor: dark.background,
     position: 'relative',
   },
   bg: {
@@ -100,7 +105,7 @@ const styles = StyleSheet.create({
     padding: px2dp(20),
   },
   username: {
-    color: '#fff',
+    color: dark.color,
     fontSize: px2dp(40),
     fontWeight: 'bold',
   },
@@ -110,13 +115,13 @@ const styles = StyleSheet.create({
     marginTop: px2dp(10),
   },
   date: {
-    color: '#999',
+    color: dark.subColor,
     fontSize: px2dp(14),
   },
   dateJoin: {
     width: px2dp(6),
     height: px2dp(6),
-    backgroundColor: '#999',
+    backgroundColor: dark.subColor,
     borderRadius: px2dp(6),
     marginLeft: px2dp(10),
     marginRight: px2dp(10),
