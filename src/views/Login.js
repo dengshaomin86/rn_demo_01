@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StatusBar, ScrollView, StyleSheet } from 'react-native';
 import { px2dp } from '../utils/stylesKits';
 import { screenWidth } from '../utils/stylesKits';
+import { dark } from '../utils/color';
 import DInput from '../components/DInput';
 import DButton from '../components/DButton';
 
@@ -59,7 +60,7 @@ class Login extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2B2C31',
+    backgroundColor: dark.background,
   },
   wrap: {
     margin: px2dp(20),
@@ -67,7 +68,6 @@ const styles = StyleSheet.create({
   },
   form: {
     padding: px2dp(20),
-    marginBottom: px2dp(20),
     borderRadius: px2dp(6),
   },
   titleWrap: {
@@ -75,23 +75,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: px2dp(60),
   },
-  titleIcon: {
-    fontSize: px2dp(38),
-    color: '#fff',
-    marginRight: px2dp(8),
-  },
   title: {
-    color: '#fff',
+    color: dark.color,
     fontSize: px2dp(40),
   },
   input: {
     marginBottom: px2dp(20),
+    borderColor: dark.panel,
+    borderWidth: px2dp(1),
+    borderBottomColor: dark.panel,
+    borderRadius: px2dp(50),
+    paddingLeft: px2dp(15),
+    paddingRight: px2dp(15),
   },
   button: {
     width: px2dp(screenWidth - 60),
     height: px2dp(50),
     alignSelf: 'center',
     overflow: 'hidden',
+    borderRadius: px2dp(50),
   },
 });
 

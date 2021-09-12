@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { dark } from '../utils/color';
 import { px2dp } from '../utils/stylesKits';
 
 class Index extends Component {
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'Gill Sans',
     textAlign: 'center',
-    color: '#ffffff',
+    color: dark.color,
     backgroundColor: 'transparent',
   },
 });

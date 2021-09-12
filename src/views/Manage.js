@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, StatusBar, ImageBackground, ScrollView } from 'react-native';
 import { px2dp } from '../utils/stylesKits';
+import { dark } from '../utils/color';
 
 class Index extends Component {
   state = {
@@ -38,19 +39,20 @@ class Index extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#5A3E4D',
+    backgroundColor: dark.background,
   },
   listWrap: {
-    backgroundColor: 'rgba(81,60,75,0.8)',
+    backgroundColor: dark.panel,
     marginTop: px2dp(15),
   },
   itemWrap: {
     padding: px2dp(20),
-    borderBottomColor: '#5A3E4D',
+    borderBottomColor: dark.background,
     borderBottomWidth: px2dp(1),
   },
   itemTitle: {
-    color: '#fff',
+    color: dark.color,
+    fontSize: px2dp(18),
   },
 });
 
